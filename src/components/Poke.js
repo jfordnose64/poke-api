@@ -5,6 +5,7 @@ const Poke = () => {
   const [searchTerm, setSearchTerm] = useState('ditto')
   const [pokemon, newPokemon] = useState('')
   const [searchData, setSearchData] = useState('')
+  const [pokeImg, setPokeImg] = useState('')
 
   const fetchData = async () => {
     const resp = await axios.get(
@@ -12,6 +13,9 @@ const Poke = () => {
     )
     newPokemon(resp.data.name)
     setSearchData(resp.data.weight)
+    setPokeImg(resp.data.sprites.front_default)
+
+    console.log(pokeImg)
   }
 
   return (
@@ -28,6 +32,7 @@ const Poke = () => {
       </button>
       <h3>{pokemon}</h3>
       <h4>{searchData}</h4>
+      <img src={pokeImg} className="pokemon" />
     </div>
   )
 }
